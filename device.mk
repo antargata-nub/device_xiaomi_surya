@@ -452,3 +452,41 @@ PRODUCT_PACKAGES += \
     firmware_wlan_mac.bin_symlink \
     firmware_WCNSS_qcom_cfg.ini_symlink
 
+#Gcam
+$(call inherit-product-if-exists, vendor/gcgop/config.mk)
+
+# Torch
+$(call soong_config_set,libcameraservice,ext_lib,//$(LOCAL_PATH):libcameraservice_extension.sm6150)
+
+# Camera shims
+PRODUCT_PACKAGES += \
+    libcamera_provider_shim \
+    libpiex_shim \
+    libui_shim.vendor
+
+# Audio reliability
+PRODUCT_PACKAGES += \
+    libtinycompress
+
+# Display compatibility
+PRODUCT_PACKAGES += \
+    vendor.qti.hardware.display.mapper@1.1.vendor \
+    vendor.qti.hardware.display.mapper@2.0.vendor
+
+# Fingerprint (Goodix + Xiaomi)
+PRODUCT_PACKAGES += \
+    com.fingerprints.extension@1.0.vendor \
+    vendor.goodix.hardware.biometrics.fingerprint@2.1.vendor
+
+# Thermal
+PRODUCT_PACKAGES += \
+    android.hardware.thermal-service.qti
+
+# Vendor compatibility
+PRODUCT_PACKAGES += \
+    libprotobuf-cpp-full-3.9.1-vendorcompat \
+    libprotobuf-cpp-lite-3.9.1-vendorcompat
+
+# Dolby 
+$(call inherit-product, hardware/dolby/dolby.mk)
+fa5047e (Add support for Dolby Atmos (switch-OFF))
